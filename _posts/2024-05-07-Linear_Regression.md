@@ -18,14 +18,14 @@ image:
 
 # Sai số dự đoán
 - Sai số dự đoán được tính bằng cách lấy trung bình bình phương của sai số giữa giá trị thực tế $y$ và giá trị dự đoán $\hat{y}$, biểu diễn bởi công thức:
-- 
+
 $$
   \frac{1}{2} e^2 = \frac{1}{2} (y - \hat{y})^2 = \frac{1}{2} (y - Xw)^2
 $$
 
 Hệ số $\frac{1}{2}$ được thêm vào để thuận tiện cho việc tính toán, đặc biệt là khi lấy đạo hàm (vì đạo hàm của $x^2$ là $2x$, nên $\frac{1}{2}$ sẽ hủy bỏ số 2 này).
 
-- Câu hỏi được đặt ra là tại sao không sử dụng trị tuyệt đối $|e|$ mà lại sử dụng bình phương $e^2$? Lý do chính là khi sử dụng trị tuyệt đối, hàm mất mát trở nên không khả vi (không thể lấy đạo hàm tại tất cả các điểm) do tính không liên tục tại điểm 0, điều này làm khó khăn cho việc tối ưu hóa bằng các thuật toán dựa trên đạo hàm như gradient descent. Ngược lại, bình phương sai số là hàm khả vi và có đạo hàm liên tục, giúp việc tối ưu hóa hiệu quả hơn trong hầu hết các trường hợp.
+Câu hỏi được đặt ra là tại sao không sử dụng trị tuyệt đối $|e|$ mà lại sử dụng bình phương $e^2$ ? Lý do chính là khi sử dụng trị tuyệt đối, hàm mất mát trở nên không khả vi (không thể lấy đạo hàm tại tất cả các điểm) do tính không liên tục tại điểm 0, điều này làm khó khăn cho việc tối ưu hóa bằng các thuật toán dựa trên đạo hàm như gradient descent. Ngược lại, bình phương sai số là hàm khả vi và có đạo hàm liên tục, giúp việc tối ưu hóa hiệu quả hơn trong hầu hết các trường hợp.
 
 Hy vọng rằng phần giải thích này giúp bạn hiểu rõ hơn về cách thức hoạt động và lựa chọn trong mô hình hồi quy tuyến tính.
 
