@@ -18,10 +18,12 @@ image:
 
 # Sai số dự đoán
 - Sai số dự đoán được tính bằng cách lấy trung bình bình phương của sai số giữa giá trị thực tế $y$ và giá trị dự đoán $\hat{y}$, biểu diễn bởi công thức:
-  $$
+- 
+$$
   \frac{1}{2} e^2 = \frac{1}{2} (y - \hat{y})^2 = \frac{1}{2} (y - Xw)^2
-  $$
-  Hệ số $\frac{1}{2}$ được thêm vào để thuận tiện cho việc tính toán, đặc biệt là khi lấy đạo hàm (vì đạo hàm của $x^2$ là $2x$, nên $\frac{1}{2}$ sẽ hủy bỏ số 2 này).
+$$
+
+Hệ số $\frac{1}{2}$ được thêm vào để thuận tiện cho việc tính toán, đặc biệt là khi lấy đạo hàm (vì đạo hàm của $x^2$ là $2x$, nên $\frac{1}{2}$ sẽ hủy bỏ số 2 này).
 
 - Câu hỏi được đặt ra là tại sao không sử dụng trị tuyệt đối $|e|$ mà lại sử dụng bình phương $e^2$? Lý do chính là khi sử dụng trị tuyệt đối, hàm mất mát trở nên không khả vi (không thể lấy đạo hàm tại tất cả các điểm) do tính không liên tục tại điểm 0, điều này làm khó khăn cho việc tối ưu hóa bằng các thuật toán dựa trên đạo hàm như gradient descent. Ngược lại, bình phương sai số là hàm khả vi và có đạo hàm liên tục, giúp việc tối ưu hóa hiệu quả hơn trong hầu hết các trường hợp.
 
@@ -34,32 +36,37 @@ Hình ảnh thứ hai bạn cung cấp mô tả cách giải quyết bài toán 
 
 # Hàm Mất Mát
 - **Hàm mất mát $L(w)$**: Được định nghĩa là tổng bình phương sai số giữa giá trị dự đoán và giá trị thực tế trên tập dữ liệu, và mục tiêu là tối thiểu hóa hàm mất mát này. Công thức của hàm mất mát là:
-  $$
+- 
+$$
   L(w) = \frac{1}{2} \sum_{i=1}^N (y_i - x_i^T w)^2
-  $$
-  ở đây $y$ là vector chứa tất cả các giá trị đầu ra thực tế, $X$ là ma trận dữ liệu đầu vào, mỗi hàng là một điểm dữ liệu, và $w$ là vector trọng số cần tìm.
+$$
+
+ở đây $y$ là vector chứa tất cả các giá trị đầu ra thực tế, $X$ là ma trận dữ liệu đầu vào, mỗi hàng là một điểm dữ liệu, và $w$ là vector trọng số cần tìm.
 
 - **Biểu diễn vector và ma trận**: $L(w)$ có thể được biểu diễn dưới dạng norm của Euclid như sau:
-  $$
+- 
+$$
   L(w) = \frac{1}{2} \|y - Xw\|^2
-  $$
+$$
 
 
 # Nghiệm cho bài toán Linear Regression
 
 **Đạo hàm hàm mất mát:**
 - Đạo hàm của hàm mất mát $L(w)$ theo trọng số $w$ được tính như sau:
-  $$
+$$
   \frac{\partial L}{\partial w} = X^T(Xw - y)
-  $$
-  Công thức này dựa trên việc tính gradient của hàm mất mát, mà ở đây là tổng bình phương sai số giữa giá trị dự đoán và giá trị thực tế.
+$$
+
+Công thức này dựa trên việc tính gradient của hàm mất mát, mà ở đây là tổng bình phương sai số giữa giá trị dự đoán và giá trị thực tế.
 
 **Phương trình đạo hàm bằng 0:**
 - Để tìm điểm tối thiểu của hàm mất mát, ta cần đặt đạo hàm này bằng 0:
-  $$
+$$
   X^TXw = X^Ty
-  $$
-  Phương trình này còn được gọi là phương trình chuẩn (normal equation) của hồi quy tuyến tính.
+$$
+
+Phương trình này còn được gọi là phương trình chuẩn (normal equation) của hồi quy tuyến tính.
 
 **Giải pháp cho phương trình:**
 - Nếu ma trận $X^TX$ khả nghịch (non-singular hay invertible), thì nghiệm duy nhất của phương trình là:
