@@ -25,7 +25,7 @@ $$
 
 Hệ số $\frac{1}{2}$ được thêm vào để thuận tiện cho việc tính toán, đặc biệt là khi lấy đạo hàm (vì đạo hàm của $x^2$ là $2x$, nên $\frac{1}{2}$ sẽ hủy bỏ số 2 này).
 
-Câu hỏi được đặt ra là tại sao không sử dụng trị tuyệt đối $|e|$ mà lại sử dụng bình phương $e^2$ ? 
+Câu hỏi được đặt ra là tại sao không sử dụng trị tuyệt đối $| e |$ mà lại sử dụng bình phương $e^2$ ? 
 
 Lý do chính là khi sử dụng trị tuyệt đối, hàm mất mát trở nên không khả vi (không thể lấy đạo hàm tại tất cả các điểm) do tính không liên tục tại điểm 0, điều này làm khó khăn cho việc tối ưu hóa bằng các thuật toán dựa trên đạo hàm như gradient descent. Ngược lại, bình phương sai số là hàm khả vi và có đạo hàm liên tục, giúp việc tối ưu hóa hiệu quả hơn trong hầu hết các trường hợp.
 
