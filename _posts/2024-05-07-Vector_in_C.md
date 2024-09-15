@@ -113,14 +113,12 @@ int main() {
 #include <stdio.h>
 #include <stdlib.h>
 
-// Cấu trúc cho Vector
 typedef struct {
     int *data;      // Mảng động lưu dữ liệu
     size_t size;    // Số phần tử hiện tại
     size_t capacity; // Kích thước bộ nhớ đã cấp phát
 } Vector;
 
-// Hàm khởi tạo vector
 void initVector(Vector *v) {
     v->size = 0;
     v->capacity = 1;  // Bắt đầu với dung lượng nhỏ
@@ -131,7 +129,6 @@ void initVector(Vector *v) {
     }
 }
 
-// Hàm thêm phần tử vào vector
 void pushBack(Vector *v, int value) {
     if (v->size == v->capacity) {
         v->capacity *= 2;
@@ -144,7 +141,6 @@ void pushBack(Vector *v, int value) {
     v->data[v->size++] = value;
 }
 
-// Hàm lấy giá trị tại vị trí chỉ định trong vector
 int get(Vector *v, size_t index) {
     if (index >= v->size) {
         printf("Chỉ số ngoài phạm vi\n");
@@ -153,7 +149,6 @@ int get(Vector *v, size_t index) {
     return v->data[index];
 }
 
-// Hàm nhập phần tử từ bàn phím vào vector
 void scanfVector(Vector *v) {
     size_t n;
     int value;
@@ -168,7 +163,6 @@ void scanfVector(Vector *v) {
     }
 }
 
-// Hàm giải phóng bộ nhớ
 void freeVector(Vector *v) {
     free(v->data);
     v->data = NULL;
@@ -176,22 +170,18 @@ void freeVector(Vector *v) {
     v->capacity = 0;
 }
 
-// Hàm chính để kiểm tra
 int main() {
     Vector v;
     initVector(&v);
 
-    // Nhập các phần tử từ bàn phím
     scanfVector(&v);
 
-    // In các phần tử trong vector
     printf("Các phần tử trong vector: ");
     for (size_t i = 0; i < v.size; i++) {
         printf("%d ", get(&v, i));
     }
     printf("\n");
 
-    // Giải phóng bộ nhớ
     freeVector(&v);
 
     return 0;
