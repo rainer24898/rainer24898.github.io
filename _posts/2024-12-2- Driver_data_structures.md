@@ -90,7 +90,7 @@ struct net_device {
 ### **Chức năng các trường quan trọng:**
 
 - **`name`**: Tên của thiết bị mạng (ví dụ: `eth0`, `wlan0`).
-- **`netdev_ops`**: Chứa các callback function để thực hiện các thao tác mạng (vd: gửi, nhận dữ liệu). Chi tiết có thể tham khảo tại : [Cơ chế callback trong cấu trúc `struct net_device`](https://www.notion.so/C-ch-callback-trong-c-u-tr-c-struct-net_device-151e37b6c9a5800db5d2cacdf829f8f3?pvs=21)
+- **`netdev_ops`**: Chứa các callback function để thực hiện các thao tác mạng (vd: gửi, nhận dữ liệu). Chi tiết có thể tham khảo tại : [Cơ chế callback trong cấu trúc `struct net_device`](https://rainer24898.github.io/posts/Mechanism_callback_in_net_device/)
 - **`state`**: Trạng thái thiết bị (vd: hoạt động, dừng, lỗi,...).
 - **`stats`**: Thống kê hiệu suất và lỗi của thiết bị (số gói tin gửi/nhận thành công, số gói bị drop,...).
 - **`mtu`**: Định nghĩa kích thước tối đa của gói tin có thể được truyền qua thiết bị. Chi tiết về MTU size có thể tìm hiểu tại: [MTU](https://thietbimanggiare.com/mtu-maximum-transmission-unit/#:~:text=MTU%20%C4%91%C6%B0%E1%BB%A3c%20x%C3%A1c%20%C4%91%E1%BB%8Bnh%20d%C6%B0%E1%BB%9Bi,c%E1%BB%91%20%C4%91%E1%BB%8Bnh%20l%C3%A0%201500%20byte.)

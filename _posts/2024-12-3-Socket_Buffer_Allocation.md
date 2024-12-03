@@ -86,7 +86,7 @@ Dựa trên hình ảnh minh họa:
 
 ### **Ethernet Header Alignment**
 
-Trong Linux Networking, khi làm việc với socket buffer (`sk_buff`) và Ethernet header, các vấn đề liên quan đến căn chỉnh bộ nhớ và hiệu suất CPU là rất quan trọng. Việc này đòi hỏi phải xử lý đặc biệt khi cấu hình bộ đệm để đảm bảo rằng header Ethernet được căn chỉnh đúng cách, tránh gây ra lỗi hiệu suất khi CPU xử lý. Chi tiết về alignment tham khảo thêm tại: [alignment](https://www.notion.so/Alignment-151e37b6c9a580698d0ecbeb5a8e34fd?pvs=21)
+Trong Linux Networking, khi làm việc với socket buffer (`sk_buff`) và Ethernet header, các vấn đề liên quan đến căn chỉnh bộ nhớ và hiệu suất CPU là rất quan trọng. Việc này đòi hỏi phải xử lý đặc biệt khi cấu hình bộ đệm để đảm bảo rằng header Ethernet được căn chỉnh đúng cách, tránh gây ra lỗi hiệu suất khi CPU xử lý. Chi tiết về alignment tham khảo thêm tại: [Alignment](https://rainer24898.github.io/posts/Alignment/)
 
 ---
 

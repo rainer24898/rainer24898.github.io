@@ -41,7 +41,7 @@ Dưới đây là các trường callback chính trong `struct net_device_ops` v
 | `ndo_do_ioctl` | Thực thi các yêu cầu IOCTL đặc biệt. |
 | `ndo_tx_timeout` | Xử lý timeout khi truyền gói tin. |
 
-Có thể tham khảo thêm tại: [**net_device_ops Struct Reference**](https://docs.huihoo.com/doxygen/linux/kernel/3.7/structnet__device__ops.html)
+Có thể tham khảo thêm tại: [**net_device_ops Struct Reference**](https://rainer24898.github.io/posts/Socket_Buffer_Allocation/)
 
 ### Ví dụ cấu hình `net_device_ops` trong driver
 
