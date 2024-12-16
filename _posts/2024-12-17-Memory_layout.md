@@ -2,8 +2,8 @@
 title: Memory layout
 author: rainer
 date: 2024-12-15 1:26:00 +0300
-categories: [Linux, C Advanced, Linux Programming]
-tags: [Linux, C Advanced, Linux Programming]
+categories: [C, C Advanced, Linux]
+tags: [C, C Advanced, Linux]
 math: true
 mermaid: true
 render_with_liquid: false
