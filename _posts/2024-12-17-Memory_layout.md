@@ -92,28 +92,20 @@ Cấu trúc này kết hợp với các kỹ thuật như ASLR, phân trang, và
 +-----------------+   +-----------------+   +-----------------+
 |   Heap          |   |   Heap          |   |   Heap          |
 +-----------------+   +-----------------+   +-----------------+
-|   BSS, Data     |   |   BSS, Data     |   |   BSS, Data     |
+|   BSS           |   |   BSS           |   |   BSS           |
+|   Data          |   |   Data          |   |   Data          |
 +-----------------+   +-----------------+   +-----------------+
 |   Text          |   |   Text          |   |   Text          |
 +-----------------+   +-----------------+   +-----------------+
-      Process 1             Process 2             Process 3
+|                         Process 1                           |
++-------------------------------------------------------------+
+|                         Process 2                           |
++-------------------------------------------------------------+
+|                         Process 3                           |
++-------------------------------------------------------------+
+
 
 ```
-
-- **Mỗi tiến trình có không gian địa chỉ ảo riêng:**
-Khi chạy nhiều tiến trình, mỗi tiến trình đều có bộ memory layout độc lập. Điều này có nghĩa là:
-    - Mỗi tiến trình có riêng phân vùng text (code segment), data segment (bao gồm initialized data, BSS), heap, stack và các vùng mmap.
-    - Không gian địa chỉ của tiến trình A hoàn toàn tách biệt với tiến trình B. Một biến global trong tiến trình A không thể bị truy cập hay thay đổi trực tiếp từ tiến trình B.
-- **Cách hoạt động fork():**
-Lệnh `fork()` trong Linux tạo ra một tiến trình con (child process) gần như là bản sao của tiến trình cha (parent). Sau `fork()`:
-    - Child process có cùng code, data segment và heap lúc ban đầu như parent, nhưng thực chất sử dụng cơ chế copy-on-write.
-    - Copy-on-write: Chừng nào cha và con chưa ghi vào trang nhớ dùng chung, chúng vẫn trỏ tới cùng vùng memory (đọc chung), chỉ khi một trong hai tiến trình ghi dữ liệu thì kernel mới tạo bản sao riêng cho tiến trình đó. Điều này giúp tiết kiệm tài nguyên.
-- **Mở rộng heap, thay đổi vùng mmap:**
-Mỗi tiến trình tự quản lý heap của nó (thông qua sbrk/malloc) mà không ảnh hưởng đến heap của tiến trình khác. Tương tự, việc mmap file, load thư viện chia sẻ trong từng tiến trình cũng không ảnh hưởng đến tiến trình khác vì chúng không chia sẻ không gian địa chỉ.
-- **Cách thức giao tiếp giữa các tiến trình:**
-Nếu muốn trao đổi dữ liệu, các tiến trình phải dùng cơ chế liên tiến trình (IPC) như pipe, socket, shared memory segments (SVID IPC, mmap với MAP\_SHARED), message queue... Khi sử dụng shared memory (một đoạn bộ nhớ được map chung), các tiến trình có thể chia sẻ một vùng địa chỉ chung, nhưng mặc định họ vẫn có không gian địa chỉ tách biệt.
-
-**Tóm lại, trong môi trường multi-process:** Mỗi tiến trình có một memory layout độc lập. Code, dữ liệu, heap, stack không bị trộn lẫn. Bộ nhớ chỉ có thể được chia sẻ thông qua các cơ chế do kernel cung cấp (shared memory, IPC).
 
 - **Mỗi tiến trình có không gian địa chỉ ảo riêng:**
 Khi chạy nhiều tiến trình, mỗi tiến trình đều có bộ memory layout độc lập. Điều này có nghĩa là:
@@ -149,50 +141,6 @@ Nếu muốn trao đổi dữ liệu, các tiến trình phải dùng cơ chế 
 |    Text                                         |
 --------------------------------------------------
 ```
-
-- **Chung không gian địa chỉ:**
-Trong multi-threading, nhiều luồng (threads) cùng tồn tại bên trong một tiến trình. Tất cả các luồng trong cùng một tiến trình chia sẻ cùng một không gian địa chỉ ảo. Điều này có nghĩa là:
-    - Mọi luồng đều thấy cùng code segment, data segment, heap, và các vùng mmap.
-    - Nếu luồng A thay đổi một biến global, luồng B cũng thấy sự thay đổi đó ngay lập tức, vì cả hai cùng truy cập cùng một vùng nhớ.
-- **Stack riêng cho mỗi luồng:**
-Tuy cùng chia sẻ heap, data, code, nhưng mỗi luồng có **stack riêng**. Stack là vùng không gian bộ nhớ dành cho các biến cục bộ, địa chỉ trở về của hàm, khung stack (stack frame). Khi tạo ra một luồng mới, kernel sẽ cấp cho luồng đó một stack riêng nằm đâu đó trong vùng địa chỉ ảo của tiến trình.
-- **Quản lý heap và dữ liệu dùng chung:**
-Vì các luồng dùng chung heap, nên việc cấp phát động phải an toàn khi đa luồng. Thư viện cấp phát bộ nhớ (malloc, new) phải được thiết kế thread-safe. Tương tự, các biến toàn cục cũng cần có cơ chế đồng bộ (mutex, spinlock…) nếu nhiều luồng cùng ghi/đọc.
-
-**Tóm lại, trong multi-thread:** Tất cả luồng trong cùng một tiến trình chia sẻ một memory layout chung cho code, data, heap và mmap region. Mỗi luồng chỉ tách biệt ở stack riêng. Việc chia sẻ hoàn toàn không gian địa chỉ giúp luồng giao tiếp cực kỳ nhanh, nhưng cũng đòi hỏi phải đồng bộ chặt chẽ để tránh lỗi cạnh tranh (race condition).
-
-**So sánh Multi-Process và Multi-Thread trong ngữ cảnh Memory Layout**
-
-- Multi-process:
-    - Mỗi tiến trình có memory layout độc lập (toàn bộ code, data, heap, stack riêng).
-    - Giao tiếp giữa các tiến trình đòi hỏi cơ chế IPC.
-    - Tách biệt rõ ràng, dễ cô lập lỗi hơn (một tiến trình crash ít ảnh hưởng trực tiếp đến bộ nhớ của tiến trình khác).
-- Multi-thread:
-    - Nhiều luồng trong cùng một tiến trình chia sẻ hầu như toàn bộ không gian địa chỉ (ngoại trừ stack).
-    - Giao tiếp giữa các luồng nhanh và dễ dàng hơn do chung không gian địa chỉ.
-    - Dễ gặp vấn đề đồng bộ, cạnh tranh dữ liệu, vì thay đổi của một luồng có thể ảnh hưởng ngay lập tức đến luồng khác.
-
-**Kết luận:**
-Trong môi trường Linux, memory layout cho nhiều tiến trình (multi-process) đảm b
-
-**Multi-Process (Nhiều Tiến Trình)**
-
-- **Mỗi tiến trình có không gian địa chỉ ảo riêng:**
-Khi chạy nhiều tiến trình, mỗi tiến trình đều có bộ memory layout độc lập. Điều này có nghĩa là:
-    - Mỗi tiến trình có riêng phân vùng text (code segment), data segment (bao gồm initialized data, BSS), heap, stack và các vùng mmap.
-    - Không gian địa chỉ của tiến trình A hoàn toàn tách biệt với tiến trình B. Một biến global trong tiến trình A không thể bị truy cập hay thay đổi trực tiếp từ tiến trình B.
-- **Cách hoạt động fork():**
-Lệnh `fork()` trong Linux tạo ra một tiến trình con (child process) gần như là bản sao của tiến trình cha (parent). Sau `fork()`:
-    - Child process có cùng code, data segment và heap lúc ban đầu như parent, nhưng thực chất sử dụng cơ chế copy-on-write.
-    - Copy-on-write: Chừng nào cha và con chưa ghi vào trang nhớ dùng chung, chúng vẫn trỏ tới cùng vùng memory (đọc chung), chỉ khi một trong hai tiến trình ghi dữ liệu thì kernel mới tạo bản sao riêng cho tiến trình đó. Điều này giúp tiết kiệm tài nguyên.
-- **Mở rộng heap, thay đổi vùng mmap:**
-Mỗi tiến trình tự quản lý heap của nó (thông qua sbrk/malloc) mà không ảnh hưởng đến heap của tiến trình khác. Tương tự, việc mmap file, load thư viện chia sẻ trong từng tiến trình cũng không ảnh hưởng đến tiến trình khác vì chúng không chia sẻ không gian địa chỉ.
-- **Cách thức giao tiếp giữa các tiến trình:**
-Nếu muốn trao đổi dữ liệu, các tiến trình phải dùng cơ chế liên tiến trình (IPC) như pipe, socket, shared memory segments (SVID IPC, mmap với MAP\_SHARED), message queue... Khi sử dụng shared memory (một đoạn bộ nhớ được map chung), các tiến trình có thể chia sẻ một vùng địa chỉ chung, nhưng mặc định họ vẫn có không gian địa chỉ tách biệt.
-
-**Tóm lại, trong môi trường multi-process:** Mỗi tiến trình có một memory layout độc lập. Code, dữ liệu, heap, stack không bị trộn lẫn. Bộ nhớ chỉ có thể được chia sẻ thông qua các cơ chế do kernel cung cấp (shared memory, IPC).
-
-**Multi-Thread (Nhiều Luồng trong cùng một Tiến Trình)**
 
 - **Chung không gian địa chỉ:**
 Trong multi-threading, nhiều luồng (threads) cùng tồn tại bên trong một tiến trình. Tất cả các luồng trong cùng một tiến trình chia sẻ cùng một không gian địa chỉ ảo. Điều này có nghĩa là:
