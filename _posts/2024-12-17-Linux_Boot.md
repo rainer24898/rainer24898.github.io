@@ -1,9 +1,9 @@
 ---
-title: Usb Ethernet for Beagle Bone Black
+title: Linux Boot
 author: rainer
-date: 2023-07-22 1:26:00 +0300
-categories: [Linux, Beagle Bone Black, Usb Ethernet]
-tags: [Beagle Bone Black, Usb Ethernet, Linux]
+date: 2024-07-22 1:26:00 +0300
+categories: [Linux]
+tags: [Linux]
 math: true
 mermaid: true
 render_with_liquid: false
