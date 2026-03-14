@@ -1,7 +1,7 @@
 ---
-title: Linux Boot
+title: Word size and instruction length
 author: rainer
-date: 2024-07-22 1:26:00 +0300
+date: 2025-07-22 1:26:00 +0300
 categories: [Linux]
 tags: [Linux]
 math: true
@@ -1085,8 +1085,7 @@ int main(void)
 
     if (a == NULL || idx == NULL)
     {
-        printf("malloc failed
-");
+        printf("malloc failed");
         free(a);
         free(idx);
         return 1;
@@ -1116,12 +1115,9 @@ int main(void)
     }
     double t3 = now_seconds();
 
-    printf("sum = %lld
-", sum);
-    printf("sequential access : %.6f s
-", t2 - t1);
-    printf("random access     : %.6f s
-", t3 - t2);
+    printf("sum = %lld", sum);
+    printf("sequential access : %.6f s", t2 - t1);
+    printf("random access     : %.6f s", t3 - t2);
 
     free(a);
     free(idx);
