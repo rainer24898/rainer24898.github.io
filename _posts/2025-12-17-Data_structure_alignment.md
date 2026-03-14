@@ -112,7 +112,80 @@ Nếu một field không thể bắt đầu ngay tại offset hiện tại, comp
 ### 3.2. Cả `struct` cũng có alignment riêng
 
 Alignment của một `struct` thường bằng **alignment lớn nhất của các field bên trong**.
+Với struct này:
 
+struct A {
+    char c;      // 1 byte
+    double x;    // 8 byte, không phải 4 byte
+    short s;     // 2 byte
+};
+
+#### Bước 1: field `c`
+
+```
+offset0:c   (1byte)
+```
+
+đã dùng 1 byte.
+
+---
+
+#### Bước 2: field `x`
+
+`double` cần alignment 8, nên nó phải bắt đầu ở offset chia hết cho 8.
+
+Hiện tại đang ở offset 1, nên compiler phải chèn **7 byte padding** từ offset 1 đến 7.
+
+```
+offset 0: c
+offset 1: padding
+offset 2: padding
+offset 3: padding
+offset 4: padding
+offset 5: padding
+offset 6: padding
+offset 7: padding
+offset 8..15: x
+```
+
+---
+
+#### Bước 3: field `s`
+
+Sau `x`, ta đang ở offset 16.
+
+`short` cần alignment 2, mà 16 chia hết cho 2, nên đặt luôn được:
+
+```
+offset 16..17: s
+```
+
+---
+
+#### Bước 4: tail padding cuối struct
+
+Lúc này struct đang dùng tới **18 byte**.
+
+Nhưng alignment của cả struct là **8**, nên `sizeof(struct A)` thường phải là **bội số của 8**.
+
+Bội số của 8 gần nhất lớn hơn hoặc bằng 18 là **24**.
+
+=> compiler thêm **6 byte tail padding** ở cuối.
+```
+struct A
++--------+--------+--------+--------+--------+--------+--------+--------+
+| c      |  pad   |  pad   |  pad   |  pad   |  pad   |  pad   |  pad   |
++--------+--------+--------+--------+--------+--------+--------+--------+
+|                      x (double, 8 bytes)                              |
++--------+--------+--------+--------+--------+--------+--------+--------+
+|   s    |   s    |  pad   |  pad   |  pad   |  pad   |  pad   |  pad   |
++--------+--------+--------+--------+--------+--------+--------+--------+
+
+offset:
+0        1        2        3        4        5        6        7
+8        9       10       11       12       13       14       15
+16       17      18       19       20       21       22       23
+```
 Điều này kéo theo một hệ quả quan trọng:
 
 * `sizeof(struct)` thường được làm tròn để chia hết cho alignment của `struct`
