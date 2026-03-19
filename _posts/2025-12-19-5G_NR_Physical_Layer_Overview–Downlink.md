@@ -639,6 +639,8 @@ Vì thế khi debug downlink, một nguyên tắc vàng là:
 
 ---
 
+Chi tiết về kênh có thể đọc thêm tại: [5G NR PDCCH](https://rainer24898.github.io/posts/PDCCH/ "PDCCH")
+
 ## 6. Đào sâu PDSCH processing chain
 
 Nếu PDCCH là “bản đồ”, thì **PDSCH** là “hàng hóa thực sự được giao”.
@@ -876,6 +878,8 @@ time-domain waveform
 ```
 
 Đây là bước tạo sóng OFDM thực sự để đưa ra RF chain.
+
+Chi tiết về kênh có thể đọc thêm tại: [5G NR PDSCH](https://rainer24898.github.io/posts/PDSCH/ "PDSCH")
 
 ---
 
