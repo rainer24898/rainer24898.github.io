@@ -284,6 +284,8 @@ Beam #2 → SSB #2
 UE đo RSRP/quality của từng SSB và chọn beam mạnh nhất
 ```
 
+Chi tiết về kênh có thể đọc thêm tại: [5G NR SSB](https://rainer24898.github.io/posts/SSB/ "SSB")
+
 ---
 
 ## 5. Đào sâu PDCCH / CORESET / Search Space
