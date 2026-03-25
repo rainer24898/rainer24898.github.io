@@ -52,6 +52,7 @@ I understand the technical point, but to make sure I explain it accurately, may 
   - [Trả lời tiếng Việt](#trả-lời-tiếng-việt-5)
   - [English answer](#english-answer-5)
 
+
 ---
 
 <a id="introduce-some-experience-that-you-work-with-4-5g-technology"></a>
@@ -60,7 +61,7 @@ I understand the technical point, but to make sure I explain it accurately, may 
 
 I am a telecom software engineer currently working on 5G embedded systems, with strong focus on Layer 1, software integration, low-level Linux, debugging, and validation. My work has involved developing and integrating features for 4G/5G systems, especially in areas such as software release upgrade, integration of new framework-supported features, performance optimization, runtime issue analysis, and system stabilization after integration.
 
-My strength is not only writing or modifying code, but also tracing issues across multiple layers of the system, from build flow, runtime behavior to interface integration and lab validation. I can use  **I** use VSG(N5182B)/VSA()  instrument from keysight. I am comfortable working with C/C++, Linux, DPDK, GDB, Makefile, Git/GitLab, Jenkins, and technically demanding workflows in 5G software development
+My strength is not only writing or modifying code, but also tracing issues across multiple layers of the system, from build flow, runtime behavior to interface integration and lab validation. I can use  VSG(N5182B)/VSA()  instrument from keysight. I am comfortable working with C/C++, Linux, DPDK, GDB, Makefile, Git/GitLab, Jenkins, and 5G PHY channel PDSCH, PUSCH, PDCCH, PUCCH PRACH SSB, DMRS, CSI-RS
 
 <a id="how-the-site-link-to-make-ue-talk-to-each-other"></a>
 
