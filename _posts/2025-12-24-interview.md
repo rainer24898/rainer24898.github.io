@@ -14,27 +14,57 @@ image:
 I understand the technical point, but to make sure I explain it accurately, may I switch to Vietnamese for this part?
 
 
-1. [Introduce some experience that you work with 4/5G Technology](#1-mở-đầu-downlink-phy-trong-nr-thực-sự-làm-gì)
-2. [Bức tranh lớn của luồng downlink](#2-bức-tranh-lớn-của-luồng-downlink)
-3. [Khung thời gian – tần số: numerology, slot, RB, RE, BWP](#3-khung-thời-gian--tần-số-numerology-slot-rb-re-bwp)
-4. [SSB / PBCH: UE đi vào hệ thống như thế nào](#4-ssb--pbch-ue-đi-vào-hệ-thống-như-thế-nào)
-5. [Đào sâu PDCCH / CORESET / Search Space](#5-đào-sâu-pdcch--coreset--search-space)
-6. [Đào sâu PDSCH processing chain](#6-đào-sâu-pdsch-processing-chain)
-7. [TBS, MCS, modulation order, code rate](#7-tbs-mcs-modulation-order-code-rate)
-8. [DM-RS, PT-RS, CSI-RS trong thực chiến downlink](#8-dm-rs-pt-rs-csi-rs-trong-thực-chiến-downlink)
-9. [MIMO, beamforming, link adaptation, HARQ](#9-mimo-beamforming-link-adaptation-harq)
-10. [Chuỗi suy luận của UE từ PDCCH đến PDSCH](#10-chuỗi-suy-luận-của-ue-từ-pdcch-đến-pdsch)
-11. [Góc nhìn implementation và debug](#11-góc-nhìn-implementation-và-debug)
-12. [Kết luận](#12-kết-luận)
+# Mục lục
 
+- [Mục lục](#mục-lục)
+- [Introduce some experience that you work with 4/5G Technology.](#introduce-some-experience-that-you-work-with-45g-technology)
+- [How the site link to make UE talk to each other.](#how-the-site-link-to-make-ue-talk-to-each-other)
+- [What is similarity between the 4G and Wifi System](#what-is-similarity-between-the-4g-and-wifi-system)
+- [Followed by the CV, what’s the exactly feature during last 3 years on LTE L3? What is the purpose of that feature, how did you change and how did you do the test?](#followed-by-the-cv-whats-the-exactly-feature-during-last-3-years-on-lte-l3-what-is-the-purpose-of-that-feature-how-did-you-change-and-how-did-you-do-the-test)
+- [How the test environment setup?](#how-the-test-environment-setup)
+- [Wifi 6, 5G and 4G, compare the pros and cons of each devices, which one is the best?](#wifi-6-5g-and-4g-compare-the-pros-and-cons-of-each-devices-which-one-is-the-best)
+- [What kind of application would really need 5G?](#what-kind-of-application-would-really-need-5g)
+- [What kind of 4G/5G work have you done?](#what-kind-of-4g5g-work-have-you-done)
+- [What projects are you most confident talking about?](#what-projects-are-you-most-confident-talking-about)
+- [Explain one project in detail: 5G software upgrade and feature integration](#explain-one-project-in-detail-5g-software-upgrade-and-feature-integration)
+- [What exactly did you do in the 5G Multi Band project?](#what-exactly-did-you-do-in-the-5g-multi-band-project)
+- [What was the purpose of the UpLink Dynamic project, and what did you change?](#what-was-the-purpose-of-the-uplink-dynamic-project-and-what-did-you-change)
+- [Tell me about your CI/CD for L1 project](#tell-me-about-your-cicd-for-l1-project)
+- [Tell me about your AI RAN project](#tell-me-about-your-ai-ran-project)
+- [How do you describe your technical strengths?](#how-do-you-describe-your-technical-strengths)
+- [What exact LTE L3 feature did you work on?](#what-exact-lte-l3-feature-did-you-work-on)
+- [11) How do you set up a test environment for your feature?](#11-how-do-you-set-up-a-test-environment-for-your-feature)
+  - [Trả lời tiếng Việt](#trả-lời-tiếng-việt)
+  - [English answer](#english-answer)
+- [12) What is the most difficult technical issue you faced?](#12-what-is-the-most-difficult-technical-issue-you-faced)
+  - [Trả lời tiếng Việt](#trả-lời-tiếng-việt-1)
+  - [English answer](#english-answer-1)
+- [13) How do you explain O-RAN / FAPI / L1 knowledge in interview?](#13-how-do-you-explain-o-ran--fapi--l1-knowledge-in-interview)
+  - [Trả lời tiếng Việt](#trả-lời-tiếng-việt-2)
+  - [English answer](#english-answer-2)
+- [14) Compare 4G, 5G, and Wi-Fi 6](#14-compare-4g-5g-and-wi-fi-6)
+  - [Trả lời tiếng Việt](#trả-lời-tiếng-việt-3)
+  - [English answer](#english-answer-3)
+- [15) What kind of applications really need 5G?](#15-what-kind-of-applications-really-need-5g)
+  - [Trả lời tiếng Việt](#trả-lời-tiếng-việt-4)
+  - [English answer](#english-answer-4)
+- [16) How do you answer “Why should we hire you?”](#16-how-do-you-answer-why-should-we-hire-you)
+  - [Trả lời tiếng Việt](#trả-lời-tiếng-việt-5)
+  - [English answer](#english-answer-5)
 
-1. Introduce some experience that you work with 4/5G Technology.
+---
+
+<a id="introduce-some-experience-that-you-work-with-4-5g-technology"></a>
+
+# Introduce some experience that you work with 4/5G Technology.
 
 I am a telecom software engineer currently working on 5G embedded systems, with strong focus on Layer 1, software integration, low-level Linux, debugging, and validation. My work has involved developing and integrating features for 4G/5G systems, especially in areas such as software release upgrade, integration of new framework-supported features, performance optimization, runtime issue analysis, and system stabilization after integration.
 
 My strength is not only writing or modifying code, but also tracing issues across multiple layers of the system, from build flow, runtime behavior to interface integration and lab validation. I can use  **I** use VSG(N5182B)/VSA()  instrument from keysight. I am comfortable working with C/C++, Linux, DPDK, GDB, Makefile, Git/GitLab, Jenkins, and technically demanding workflows in 5G software development
 
-1.  “How the site link to make UE talk to each other.”
+<a id="how-the-site-link-to-make-ue-talk-to-each-other"></a>
+
+# How the site link to make UE talk to each other.
 
 Two UEs do not talk to each other directly in a normal cellular architecture. Their traffic is controlled and forwarded by the network.
 
@@ -46,31 +76,40 @@ So the “site link” is not just a radio link. It includes radio access, trans
 
 The radio side provides access, but the actual UE-to-UE communication depends on end-to-end user-plane routing,  and core-network forwarding
 
-1. What is similarity between the 4G and Wifi System
+<a id="what-is-similarity-between-the-4g-and-wifi-system"></a>
+
+# What is similarity between the 4G and Wifi System
 
 4G and Wi-Fi are both wireless communication systems, so they share many common concepts such as modulation, coding, MIMO, OFDM-based transmission, channel estimation, and medium access control.
 
 However, 4G is a cellular system designed for wide-area mobility, controlled resource allocation, and operator-managed QoS, while Wi-Fi is mainly a local-area system optimized for shorter-range access with a different MAC.
 
-1.  “Followed by the CV, what’s the exactly feature during last 3 years on LTE L3? What is the purpose of that feature, how did you change and how did you do the test?”
+<a id="followed-by-the-cv-what-s-the-exactly-feature-during-last-3-years-on-lte-l3-what-is-the-purpose-of-that-feature-how-did-you-change-and-how-did-you-do-the-test"></a>
 
-1. How the test environment setup?
+# Followed by the CV, what’s the exactly feature during last 3 years on LTE L3? What is the purpose of that feature, how did you change and how did you do the test?
+
+<a id="how-the-test-environment-setup"></a>
+
+# How the test environment setup?
 
 The test environment usually included the DUT software running on the target platform, UE or UE simulator, and logging/monitoring components.
 
 Depending on the scenario, we also used RF attenuation, packet capture, system logs, and KPI collection to validate both protocol behavior and performance.
 
-- **Radio side**: eNB/gNB, UE hoặc UE simulator
-- **Core side**: EPC/5GC test environment
-- **Transport side**: switch/VLAN/IP routing
-- **Traffic side**: iperf, ping, throughput tools
-- **Debug side**:
-    - Wireshark / tcpdump
-    - internal logs
-    - crash dump
-    - KPI counters
+* **Radio side**: eNB/gNB, UE hoặc UE simulator
+* **Core side**: EPC/5GC test environment
+* **Transport side**: switch/VLAN/IP routing
+* **Traffic side**: iperf, ping, throughput tools
+* **Debug side**:
 
-1.  “Wifi 6, 5G and 4G, compare the pros and cons of each devices, which one is the best?”
+  * Wireshark / tcpdump
+  * internal logs
+  * crash dump
+  * KPI counters
+
+<a id="wifi-6-5g-and-4g-compare-the-pros-and-cons-of-each-devices-which-one-is-the-best"></a>
+
+# Wifi 6, 5G and 4G, compare the pros and cons of each devices, which one is the best?
 
 I would not say one is universally the best.
 
@@ -82,7 +121,9 @@ Wi-Fi 6 is very strong for indoor, local, high-throughput access with relatively
 
 So the best technology depends on the use case: public mobility and operator-managed service usually favor cellular, while local indoor access often favors Wi-Fi.
 
-1.  “What kind of application would really need 5G?”
+<a id="what-kind-of-application-would-really-need-5g"></a>
+
+# What kind of application would really need 5G?
 
 Applications that truly benefit from 5G are those requiring either much higher capacity, lower latency, better mobility support, or higher device density than 4G can provide.
 
@@ -90,13 +131,17 @@ Examples include industrial automation, private wireless networks, AR/VR, cloud 
 
 5G becomes valuable when the requirement is not just “internet access,” but performance, scale, and service differentiation.
 
-1. What kind of 4G/5G work have you done?
+<a id="what-kind-of-4g-5g-work-have-you-done"></a>
+
+# What kind of 4G/5G work have you done?
 
 My 4G/5G experience is mainly on the software and system-integration side rather than RF planning or field deployment. I have participated in research and development of Layer 1 features for 4G/5G networks, and I have worked on software upgrade, feature integration, uplink processing enhancement, multi-band support, CI/CD automation for L1, and more recently AI RAN optimization on target hardware.
 
 My responsibilities typically include analyzing the impact of a new feature or release, modifying or integrating software, resolving build/runtime/integration issues, debugging on Linux platform, and then validating the behavior through controlled lab testing.
 
-1. What projects are you most confident talking about?
+<a id="what-projects-are-you-most-confident-talking-about"></a>
+
+# What projects are you most confident talking about?
 
 I am most confident discussing five main projects.
 
@@ -110,45 +155,61 @@ The fourth is **CI/CD for L1**, where I analyzed the existing workflow, built au
 
 The fifth is **AI RAN**, where I optimized code and processing flow to improve latency, throughput, memory usage, and resource efficiency for model execution on Linux-based target hardware.
 
-1. Explain one project in detail: 5G software upgrade and feature integration
+<a id="explain-one-project-in-detail-5g-software-upgrade-and-feature-integration"></a>
+
+# Explain one project in detail: 5G software upgrade and feature integration
 
 In this project, the main objective was to upgrade the existing 5G software to newer vendor releases, integrate newly supported framework features, and migrate to newer DPDK versions. The challenge was not just replacing versions, but ensuring compatibility, stability, and successful system integration after the upgrade.
 
 My role was to analyze the differences between the old and new releases, evaluate software impact, merge new features into the current codebase, fix build and compatibility issues, resolve integration problems, and support validation after the upgrade. My contribution was to make sure the system was not only buildable on the new baseline, but also stable and usable after migration
 
-1.  What exactly did you do in the 5G Multi Band project?
+<a id="what-exactly-did-you-do-in-the-5g-multi-band-project"></a>
+
+# What exactly did you do in the 5G Multi Band project?
 
 In the 5G Multi Band project, the goal was to extend the existing software platform to support multiple band configurations. My work included updating and integrating the relevant software modules to enable multi-band operation, and then resolving build, runtime, and integration issues that appeared during implementation.
 
 Besides coding and integration, I also supported debugging, validation, and stability improvement during Multi Band operation. This project also involved testing with VSA/VSG instruments, so I gained additional experience in validating system behavior from waveform measurement perspective, not only from software logs
 
-1. What was the purpose of the UpLink Dynamic project, and what did you change?
+<a id="what-was-the-purpose-of-the-uplink-dynamic-project-and-what-did-you-change"></a>
+
+# What was the purpose of the UpLink Dynamic project, and what did you change?
 
 The purpose of the UpLink Dynamic project was to improve the flexibility and save resources ****of uplink processing in the existing 5G software platform. In this project, I analyzed the software impact of the feature and then developed and integrated the necessary software changes to support dynamic uplink processing.
 
 More specifically, I worked on updating feature-related parameters, control logic, and software flow. After that, I resolved build, runtime, and integration issues during development, and supported debugging, validation, and stabilization on Linux platform. The key point was not only to enable the feature, but also to make sure it did not break existing flow and was stable enough for real system integration.
 
-1. Tell me about your CI/CD for L1 project
+<a id="tell-me-about-your-ci-cd-for-l1-project"></a>
+
+# Tell me about your CI/CD for L1 project
 
 CI/CD for L1 is an important project because it shows that I do not only work on feature code, but also on improving development efficiency and software quality. The objective was to automate the build, integration, validation, and delivery workflow for 5G L1 software.
 
 My role was to analyze the existing development workflow, design and develop CI/CD pipelines for build/integration/validation, automate source sync, build execution, script running, log collection, and artifact handling. I also investigated and fixed pipeline failures, build issues, and environment-related problems. The main value of this project was reducing integration time, minimizing manual errors, and making software validation more repeatable and stable
 
-1.  Tell me about your AI RAN project
+<a id="tell-me-about-your-ai-ran-project"></a>
+
+# Tell me about your AI RAN project
 
 AI RAN is quite different from traditional integration projects because the main focus is model execution performance on target hardware. The objective was to improve latency, throughput, resource efficiency, and system integration of AI RAN software on Linux platform.
 
 In this project, I analyzed performance bottlenecks affecting model execution on the target hardware, optimized software code and processing flow to improve latency and throughput, and improved memory usage, data handling, and resource efficiency. This project shows that I am not limited to traditional telecom feature work, but can also handle performance tuning from a system-level perspective.
 
-1. How do you describe your technical strengths?
+<a id="how-do-you-describe-your-technical-strengths"></a>
+
+# How do you describe your technical strengths?
 
 My strongest technical point is working in complex telecom software environments where the issue is not isolated to a single module. I am comfortable with cross-layer problems, especially those involving build flow, runtime behavior, timing, integration, platform behavior, performance, or stability.
 
 I also have a solid Embedded Linux background, including C/C++ on Linux, process/thread, IPC, memory management, file system, socket programming, TCP/UDP, Makefile, build automation, GDB, Valgrind, and Git/GitLab. In addition, I have basic knowledge of U-Boot, kernel, rootfs, Linux device drivers, and register-level understanding. On the telecom side, my CV also reflects understanding of 5G RAN/O-RAN, Open Fronthaul, High-PHY/Low-PHY split, FAPI/nFAPI, and 5G NR physical channels and signals.
 
-1. What exact LTE L3 feature did you work on?
+<a id="what-exact-lte-l3-feature-did-you-work-on"></a>
+
+# What exact LTE L3 feature did you work on?
 
 I want to be transparent that my recent experience is stronger in 5G L1 software, integration, low-level Linux, and system troubleshooting than in pure LTE L3 feature ownership. However, I work well in cross-layer environments where higher-layer behavior directly affects integration flow, runtime behavior, and system validation.
+
+<a id="11-how-do-you-set-up-a-test-environment-for-your-feature"></a>
 
 # 11) How do you set up a test environment for your feature?
 
@@ -166,6 +227,8 @@ I do not only focus on making the test pass, but also on making the issue reprod
 
 ---
 
+<a id="12-what-is-the-most-difficult-technical-issue-you-faced"></a>
+
 # 12) What is the most difficult technical issue you faced?
 
 ## Trả lời tiếng Việt
@@ -181,6 +244,8 @@ One of the most difficult technical situations for me is usually a runtime or in
 My usual approach is to narrow the scope step by step: compare baseline before and after the change, review build/config/runtime conditions, analyze logs, use GDB or other suitable debugging tools, and then verify the conclusion through controlled testing. This kind of work is very close to the type of projects I have done, such as release upgrade, feature integration, CI/CD failure investigation, and performance tuning on Linux.
 
 ---
+
+<a id="13-how-do-you-explain-o-ran-fapi-l1-knowledge-in-interview"></a>
 
 # 13) How do you explain O-RAN / FAPI / L1 knowledge in interview?
 
@@ -198,6 +263,8 @@ The important point is that I do not only know the concepts theoretically. I wor
 
 ---
 
+<a id="14-compare-4g-5g-and-wi-fi-6"></a>
+
 # 14) Compare 4G, 5G, and Wi-Fi 6
 
 ## Trả lời tiếng Việt
@@ -213,6 +280,8 @@ I would not say one technology is always the best, because it depends on the use
 If I need to choose by scenario, I would say: for public mobility and managed wide-area service, cellular is stronger; for local indoor access, Wi-Fi is often the more practical and cost-effective choice; and 5G becomes most valuable when the requirement is performance, low latency, high device density, or stronger service control. My 4G/5G architecture background helps me answer this from a system perspective rather than a marketing perspective.
 
 ---
+
+<a id="15-what-kind-of-applications-really-need-5g"></a>
 
 # 15) What kind of applications really need 5G?
 
@@ -230,6 +299,8 @@ With my 5G software background, I see 5G not just as “higher speed”, but as 
 
 ---
 
+<a id="16-how-do-you-answer-why-should-we-hire-you"></a>
+
 # 16) How do you answer “Why should we hire you?”
 
 ## Trả lời tiếng Việt
@@ -243,4 +314,6 @@ Nếu team cần một kỹ sư làm tốt trong môi trường phần mềm vi�
 If the team needs an engineer who can work effectively in complex telecom software environments, especially on 5G software integration, low-level Linux, performance, debugging, and validation, then I believe I am a strong fit. I have a technical foundation that is close to real development environments: C/C++, Linux, DPDK, GDB, CI/CD, integration, and system knowledge of 5G RAN/O-RAN/L1.
 
 What differentiates me is that I do not look at problems as isolated module-level issues. I am used to turning difficult bugs or complex integration tasks into structured engineering problems that can be analyzed, debugged, and validated through controlled testing. The projects in my CV reflect that contribution quite clearly.
+
+I understand the technical point, but to make sure I explain it accurately, may I switch to Vietnamese for this part?
 
