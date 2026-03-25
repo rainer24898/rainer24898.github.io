@@ -159,25 +159,31 @@ The fifth is **AI RAN**, where I optimized code and processing flow to improve l
 
 # Explain one project in detail: 5G software upgrade and feature integration
 
-In this project, the main objective was to upgrade the existing 5G software to newer vendor releases, integrate newly supported framework features, and migrate to newer DPDK versions. The challenge was not just replacing versions, but ensuring compatibility, stability, and successful system integration after the upgrade.
+In this project, the main objective was to upgrade the 5G software to newer vendor releases, integrate newly supported framework features, and migrate to newer DPDK versions. 
 
 My role was to analyze the differences between the old and new releases, evaluate software impact, merge new features into the current codebase, fix build and compatibility issues, resolve integration problems, and support validation after the upgrade. My contribution was to make sure the system was not only buildable on the new baseline, but also stable and usable after migration
+
+For example, when a new feature requires an additional configuration from L2, that feature could affect the all system.
+
+The challenge was not just replacing versions, but ensuring compatibility, stability, and successful system integration after the upgrade. and debugging tools (GDB) can not used on low-latency real-time threads.
 
 <a id="what-exactly-did-you-do-in-the-5g-multi-band-project"></a>
 
 # What exactly did you do in the 5G Multi Band project?
 
-In the 5G Multi Band project, the goal was to extend the existing software platform to support multiple band configurations. My work included updating and integrating the relevant software modules to enable multi-band operation, and then resolving build, runtime, and integration issues that appeared during implementation.
+In the 5G Multi Band project, the target was to extend the existing software platform to support multi band configurations. My work included develop and integrating the software modules to enable multi-band operation, and then resolving build, runtime, and integration issues that during deployment.
 
 Besides coding and integration, I also supported debugging, validation, and stability improvement during Multi Band operation. This project also involved testing with VSA/VSG instruments, so I gained additional experience in validating system behavior from waveform measurement perspective, not only from software logs
+
+The challenge is not only to develop and test, but also to integrate with multiple vendor RUs. 
 
 <a id="what-was-the-purpose-of-the-uplink-dynamic-project-and-what-did-you-change"></a>
 
 # What was the purpose of the UpLink Dynamic project, and what did you change?
 
-The purpose of the UpLink Dynamic project was to improve the flexibility and save resources ****of uplink processing in the existing 5G software platform. In this project, I analyzed the software impact of the feature and then developed and integrated the necessary software changes to support dynamic uplink processing.
+The purpose of the UpLink Dynamic project was to improve the flexibility and save resources of uplink processing in the existing 5G software platform. I develop the CP/UP packet flow to follow the exact L2 scheduling, instead of transmitting the full resource grid. Then close the ORAN packet and send to RU. Beside, I also support measurement and testing with VSG instrument (N5182B).
 
-More specifically, I worked on updating feature-related parameters, control logic, and software flow. After that, I resolved build, runtime, and integration issues during development, and supported debugging, validation, and stabilization on Linux platform. The key point was not only to enable the feature, but also to make sure it did not break existing flow and was stable enough for real system integration.
+The challenge is not only developing and testing, but also requiring the Resource Unit (RU) to support the feature. For example, when I send the RB configuration via L2 to the RU, the RU still handles the all resource grid. So, I have to support the RU in developing the feature using the ORAN packet that the DU sends to the RU. 
 
 <a id="tell-me-about-your-ci-cd-for-l1-project"></a>
 
@@ -187,13 +193,26 @@ CI/CD for L1 is an important project because it shows that I do not only work on
 
 My role was to analyze the existing development workflow, design and develop CI/CD pipelines for build/integration/validation, automate source sync, build execution, script running, log collection, and artifact handling. I also investigated and fixed pipeline failures, build issues, and environment-related problems. The main value of this project was reducing integration time, minimizing manual errors, and making software validation more repeatable and stable
 
+The challenge lies in handling logs for multiple channels. Therefore, I reduced it to a text processing problem and returned the pass/fail result at the end of the stage. and debugging tools (GDB) can not used on low-latency real-time threads.
+
+
 <a id="tell-me-about-your-ai-ran-project"></a>
 
 # Tell me about your AI RAN project
 
-AI RAN is quite different from traditional integration projects because the main focus is model execution performance on target hardware. The objective was to improve latency, throughput, resource efficiency, and system integration of AI RAN software on Linux platform.
+AI RAN is a project that applies AI to the PUSCH channel. My work mainly focus is model execution performance on target hardware. The target  was to improve latency, throughput, resource efficiency, and system integration of AI RAN software on Linux platform.
 
 In this project, I analyzed performance bottlenecks affecting model execution on the target hardware, optimized software code and processing flow to improve latency and throughput, and improved memory usage, data handling, and resource efficiency. This project shows that I am not limited to traditional telecom feature work, but can also handle performance tuning from a system-level perspective.
+
+---
+
+For CPU-side optimization, I focused on reducing unnecessary operations in hot paths, minimizing branch-heavy logic such as too many IF statements inside hot loops, and improving execution efficiency.
+
+For memory-side optimization, I worked on better data layout, alignment, memory access patterns, and reducing unnecessary memory copies to improve cache efficiency.
+
+For example: storing a 2D array in memory using row-major allows each cache line to utilize more useful bytes. Or, use a variable have size matches the word size of CPU.
+
+The challenge was not only in development and testing, but also in making sure no unexpected process was using CPU cores when the AI workload was running. I  manage task allocation, and debugging tools (GDB) can not used on low-latency real-time threads.
 
 <a id="how-do-you-describe-your-technical-strengths"></a>
 
@@ -275,7 +294,7 @@ Nếu cần chọn theo bài toán, tôi sẽ nói: với public mobility và se
 
 ## English answer
 
-I would not say one technology is always the best, because it depends on the use case. 4G is strong in maturity, broad coverage, and more practical deployment cost. 5G is better when higher throughput, lower latency, larger capacity, and more advanced service capability are needed. Wi-Fi 6 is very suitable for indoor or local-area environments, with high throughput and lower deployment cost in many cases.
+I would not say one technology is always the best, because it depends on the use case. 4G is strong in maturity, broad coverage, and more low deployment cost. 5G is better when higher throughput, lower latency, larger capacity, and more advanced service capability are needed. Wi-Fi 6 is very suitable for indoor or local-area environments, with high throughput and lower deployment cost in many cases.
 
 If I need to choose by scenario, I would say: for public mobility and managed wide-area service, cellular is stronger; for local indoor access, Wi-Fi is often the more practical and cost-effective choice; and 5G becomes most valuable when the requirement is performance, low latency, high device density, or stronger service control. My 4G/5G architecture background helps me answer this from a system perspective rather than a marketing perspective.
 
