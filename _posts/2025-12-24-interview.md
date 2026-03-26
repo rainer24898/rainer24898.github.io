@@ -11,7 +11,7 @@ image:
     path: 
 ---
 
-I understand the technical point, but to make sure I explain it accurately, may I switch to Vietnamese for this part?
+I understand the technical point, but to make sure I explain it exactly, may I switch to Vietnamese for this part?
 
 
 # Mục lục
